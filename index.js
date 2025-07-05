@@ -17,14 +17,17 @@ app.use(express.urlencoded({extended:true}))
 //arr is used to replicate it as database
 let posts=[
     {
+        id:"1a",
         username:"apnacollege",
         content:"i love coding",
     },
     {
+        id:"2b",
         username:"Hitesh",
         content:"Chai aur code",
     },
     {
+        id:"3c",
         username:"FreeCodeCamp",
         content:"We Promote open source",
     }
@@ -45,4 +48,19 @@ app.post("/posts",(req,res)=>
     posts.push({username,content});
     // res.send("Post route is working");
     res.redirect("/posts");
+})
+
+app.get("/posts/:id",(req,res)=>{
+    let {id}=req.params;
+    let post=posts.find((p)=>{return id === p.id})
+    console.log(post)
+    if(post)
+    {
+        res.render("show.ejs",{post});
+    }
+    else
+    {
+        res.render("error.ejs")
+    }
+    
 })
