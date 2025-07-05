@@ -14,6 +14,22 @@ app.use(express.static(path.join(__dirname,"public")))
 
 app.use(express.urlencoded({extended:true}))
 
-app.get("/",(req,res)=>{
-    res.send("You are on main page")
+let posts=[
+    {
+        username:"@apnacollege",
+        content:"i love coding",
+    },
+    {
+        username:"Hitesh",
+        content:"Chai aur code",
+    },
+    {
+        username:"FreeCodeCamp",
+        content:"We Promote open source",
+    }
+
+];
+
+app.get("/posts",(req,res)=>{
+    res.render("index.ejs",{posts});
 })
