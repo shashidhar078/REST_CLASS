@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:true}))
 
 let posts=[
     {
-        username:"@apnacollege",
+        username:"apnacollege",
         content:"i love coding",
     },
     {
