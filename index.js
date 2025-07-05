@@ -40,6 +40,8 @@ app.get("/posts/new",(req,res)=>{
 
 app.post("/posts",(req,res)=>
 {
-    console.log(req.body);
-    res.send("Post route is working");
+    let {username,content} = req.body;
+    posts.push({username,content});
+    // res.send("Post route is working");
+    res.redirect("/posts");
 })
