@@ -33,3 +33,13 @@ let posts=[
 app.get("/posts",(req,res)=>{
     res.render("index.ejs",{posts});
 })
+
+app.get("/posts/new",(req,res)=>{
+    res.render("new.ejs");
+})
+
+app.post("/posts",(req,res)=>
+{
+    console.log(req.body);
+    res.send("Post route is working");
+})
