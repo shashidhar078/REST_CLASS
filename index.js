@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname,"public")))
 
 app.use(express.urlencoded({extended:true}))
 
+//arr is used to replicate it as database
 let posts=[
     {
         username:"apnacollege",
