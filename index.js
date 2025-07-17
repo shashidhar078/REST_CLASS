@@ -2,6 +2,9 @@ const express=require("express");
 const app=express();
 const path=require("path")
 const{v4 : uuid4} = require("uuid");
+const methoOverride=require("method-override");
+
+app.use(methoOverride("_method"));
 
 const port=8080;
 
@@ -69,15 +72,22 @@ app.get("/posts/:id",(req,res)=>{
 
 app.patch("/posts/:id",(req,res)=>{
     let {id}=req.params;
-    let {newContent}=req.body.content;
+    let newContent=req.body.content;
     console.log(newContent);
     let post=posts.find((p)=>{return id === p.id});
     post.content=newContent;
     console.log(post);
+    res.redirect("/posts");
 })
 
 app.get("/posts/:id/edit",(req,res)=>{
     let {id}=req.params;
     let post=posts.find((p)=>{return id === p.id});
     res.render("edit.ejs",{post})
+})
+
+app.delete("/posts/:id",(req,res)=>{
+    let {id}=req.params;
+    posts=posts.filter((p)=>{return id !== p.id});
+    res.redirect("/posts");
 })
