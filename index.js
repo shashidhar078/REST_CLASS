@@ -66,3 +66,18 @@ app.get("/posts/:id",(req,res)=>{
     }
     
 })
+
+app.patch("/posts/:id",(req,res)=>{
+    let {id}=req.params;
+    let {newContent}=req.body.content;
+    console.log(newContent);
+    let post=posts.find((p)=>{return id === p.id});
+    post.content=newContent;
+    console.log(post);
+})
+
+app.get("/posts/:id/edit",(req,res)=>{
+    let {id}=req.params;
+    let post=posts.find((p)=>{return id === p.id});
+    res.render("edit.ejs",{post})
+})
