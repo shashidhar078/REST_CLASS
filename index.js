@@ -1,6 +1,7 @@
 const express=require("express");
 const app=express();
 const path=require("path")
+const{v4 : uuid4} = require("uuid");
 
 const port=8080;
 
@@ -17,17 +18,17 @@ app.use(express.urlencoded({extended:true}))
 //arr is used to replicate it as database
 let posts=[
     {
-        id:"1a",
+        id:uuid4(),
         username:"apnacollege",
         content:"i love coding",
     },
     {
-        id:"2b",
+        id:uuid4(),
         username:"Hitesh",
         content:"Chai aur code",
     },
     {
-        id:"3c",
+       id:uuid4(),
         username:"FreeCodeCamp",
         content:"We Promote open source",
     }
@@ -45,7 +46,8 @@ app.get("/posts/new",(req,res)=>{
 app.post("/posts",(req,res)=>
 {
     let {username,content} = req.body;
-    posts.push({username,content});
+    let id=uuid4();
+    posts.push({id,username,content});
     // res.send("Post route is working");
     res.redirect("/posts");
 })
